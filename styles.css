@@ -73,6 +73,10 @@ button {
   transition: background 0.2s ease;
 }
 
+.panel > button {
+  margin-top: 0.75rem;
+}
+
 button:hover {
   background: var(--accent-dark);
 }
