@@ -3,7 +3,17 @@ const facts = [
   "Liczba π jest niewymierna i jej rozwinięcie dziesiętne nigdy się nie kończy.",
   "Suma kątów wewnętrznych trójkąta w geometrii euklidesowej wynosi 180°.",
   "Liczby pierwsze są podstawowym budulcem wszystkich liczb naturalnych większych od 1.",
-  "Istnieją nieskończenie wiele liczb pierwszych – udowodnił to Euklides."
+  "Istnieją nieskończenie wiele liczb pierwszych – udowodnił to Euklides.",
+  "Liczba e (około 2,71828) pojawia się naturalnie przy opisie wzrostu wykładniczego.",
+  "Każdą dodatnią liczbę całkowitą można zapisać jako sumę co najwyżej czterech kwadratów.",
+  "W sudoku nie używa się działań matematycznych – to łamigłówka logiczna oparta na ograniczeniach.",
+  "Twierdzenie Pitagorasa było znane w różnych kulturach jeszcze przed Pitagorasem.",
+  "Fraktale, takie jak zbiór Mandelbrota, pokazują nieskończoną złożoność przy dowolnym powiększeniu.",
+  "Liczba 1729 to najmniejsza liczba, którą można zapisać jako sumę dwóch sześcianów na dwa różne sposoby.",
+  "W geometrii nieeuklidesowej suma kątów trójkąta może być różna od 180°.",
+  "Istnieją liczby przestępne, których nie da się otrzymać jako rozwiązania żadnego wielomianu o współczynnikach całkowitych.",
+  "Paradoks hotelu Hilberta pokazuje, jak zaskakująco działa pojęcie nieskończoności.",
+  "Liczby pierwsze Mersenne’a mają postać 2^n − 1 i są związane z największymi znanymi liczbami pierwszymi."
 ];
 
 const quizQuestions = [
