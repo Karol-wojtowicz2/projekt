@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matematyczne Ciekawostki</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Matematyczne Ciekawostki</h1>
+      <p>
+        Interaktywna strona, która pokazuje, że matematyka potrafi zaskakiwać,
+        bawić i inspirować.
+      </p>
+      <a href="#ciekawostki" class="cta">Odkrywaj</a>
+    </header>
+
+    <main>
+      <section id="ciekawostki" class="panel">
+        <h2>Losowa ciekawostka dnia</h2>
+        <p id="fact-text">Kliknij przycisk, aby wylosować ciekawostkę.</p>
+        <button id="fact-btn">Losuj ciekawostkę</button>
+      </section>
+
+      <section class="panel">
+        <h2>Mini quiz: Prawda czy fałsz?</h2>
+        <div id="quiz-container"></div>
+        <button id="next-question-btn">Następne pytanie</button>
+        <p id="quiz-feedback" aria-live="polite"></p>
+        <p id="quiz-score">Wynik: 0 / 0</p>
+      </section>
+
+      <section class="panel">
+        <h2>Generator ciągu Fibonacciego</h2>
+        <label for="fib-count">Podaj liczbę elementów (1-25):</label>
+        <input id="fib-count" type="number" min="1" max="25" value="8" />
+        <button id="fib-btn">Generuj</button>
+        <p id="fib-result"></p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Zaprojektowano jako projekt edukacyjny o matematycznych ciekawostkach.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
