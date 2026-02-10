@@ -113,8 +113,8 @@ function generateFibonacci(length) {
 fibBtn.addEventListener("click", () => {
   const amount = Number.parseInt(fibCount.value, 10);
 
-  if (!Number.isInteger(amount) || amount < 1 || amount > 25) {
-    fibResult.textContent = "Podaj poprawną wartość od 1 do 25.";
+  if (!Number.isInteger(amount) || amount < 1 || amount > 50) {
+    fibResult.textContent = "Podaj poprawną wartość od 1 do 50.";
     fibResult.className = "feedback-bad";
     return;
   }
