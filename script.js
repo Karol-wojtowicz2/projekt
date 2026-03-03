@@ -48,6 +48,13 @@ const quizScore = document.getElementById("quiz-score");
 const fibCount = document.getElementById("fib-count");
 const fibBtn = document.getElementById("fib-btn");
 const fibResult = document.getElementById("fib-result");
+const primeInput = document.getElementById("prime-input");
+const primeBtn = document.getElementById("prime-btn");
+const primeResult = document.getElementById("prime-result");
+const gcdA = document.getElementById("gcd-a");
+const gcdB = document.getElementById("gcd-b");
+const gcdBtn = document.getElementById("gcd-btn");
+const gcdResult = document.getElementById("gcd-result");
 
 let questionIndex = 0;
 let answeredQuestions = 0;
@@ -120,6 +127,42 @@ function generateFibonacci(length) {
   return sequence;
 }
 
+function isPrimeNumber(value) {
+  if (value < 2) {
+    return false;
+  }
+
+  if (value === 2) {
+    return true;
+  }
+
+  if (value % 2 === 0) {
+    return false;
+  }
+
+  const limit = Math.floor(Math.sqrt(value));
+  for (let i = 3; i <= limit; i += 2) {
+    if (value % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function calculateGcd(first, second) {
+  let a = Math.abs(first);
+  let b = Math.abs(second);
+
+  while (b !== 0) {
+    const rest = a % b;
+    a = b;
+    b = rest;
+  }
+
+  return a;
+}
+
 fibBtn.addEventListener("click", () => {
   const amount = Number.parseInt(fibCount.value, 10);
 
@@ -131,6 +174,45 @@ fibBtn.addEventListener("click", () => {
 
   fibResult.className = "";
   fibResult.textContent = `Ciąg: ${generateFibonacci(amount).join(", ")}`;
+});
+
+primeBtn.addEventListener("click", () => {
+  const value = Number.parseInt(primeInput.value, 10);
+
+  if (!Number.isInteger(value) || value < 0) {
+    primeResult.textContent = "Podaj poprawną liczbę całkowitą dodatnią lub 0.";
+    primeResult.className = "feedback-bad";
+    return;
+  }
+
+  const isPrime = isPrimeNumber(value);
+  const message = isPrime
+    ? `Tak, ${value} jest liczbą pierwszą.`
+    : `Nie, ${value} nie jest liczbą pierwszą.`;
+
+  primeResult.textContent = message;
+  primeResult.className = isPrime ? "feedback-ok" : "feedback-bad";
+});
+
+gcdBtn.addEventListener("click", () => {
+  const first = Number.parseInt(gcdA.value, 10);
+  const second = Number.parseInt(gcdB.value, 10);
+
+  if (!Number.isInteger(first) || !Number.isInteger(second)) {
+    gcdResult.textContent = "Podaj dwie poprawne liczby całkowite.";
+    gcdResult.className = "feedback-bad";
+    return;
+  }
+
+  if (first === 0 && second === 0) {
+    gcdResult.textContent = "Dla pary 0 i 0 NWD nie jest określony.";
+    gcdResult.className = "feedback-bad";
+    return;
+  }
+
+  const gcd = calculateGcd(first, second);
+  gcdResult.textContent = `NWD(${first}, ${second}) = ${gcd}`;
+  gcdResult.className = "feedback-ok";
 });
 
 factBtn.addEventListener("click", pickRandomFact);
