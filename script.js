@@ -55,6 +55,16 @@ const gcdA = document.getElementById("gcd-a");
 const gcdB = document.getElementById("gcd-b");
 const gcdBtn = document.getElementById("gcd-btn");
 const gcdResult = document.getElementById("gcd-result");
+const lcmA = document.getElementById("lcm-a");
+const lcmB = document.getElementById("lcm-b");
+const lcmBtn = document.getElementById("lcm-btn");
+const lcmResult = document.getElementById("lcm-result");
+const factorialInput = document.getElementById("factorial-input");
+const factorialBtn = document.getElementById("factorial-btn");
+const factorialResult = document.getElementById("factorial-result");
+const statsInput = document.getElementById("stats-input");
+const statsBtn = document.getElementById("stats-btn");
+const statsResult = document.getElementById("stats-result");
 
 let questionIndex = 0;
 let answeredQuestions = 0;
@@ -163,6 +173,41 @@ function calculateGcd(first, second) {
   return a;
 }
 
+function calculateLcm(first, second) {
+  if (first === 0 || second === 0) {
+    return 0;
+  }
+
+  return Math.abs((first * second) / calculateGcd(first, second));
+}
+
+function calculateFactorial(value) {
+  let result = 1;
+  for (let i = 2; i <= value; i += 1) {
+    result *= i;
+  }
+
+  return result;
+}
+
+function parseNumberList(rawInput) {
+  return rawInput
+    .split(",")
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0)
+    .map((item) => Number(item));
+}
+
+function calculateMedian(sortedValues) {
+  const middle = Math.floor(sortedValues.length / 2);
+
+  if (sortedValues.length % 2 === 0) {
+    return (sortedValues[middle - 1] + sortedValues[middle]) / 2;
+  }
+
+  return sortedValues[middle];
+}
+
 fibBtn.addEventListener("click", () => {
   const amount = Number.parseInt(fibCount.value, 10);
 
@@ -213,6 +258,51 @@ gcdBtn.addEventListener("click", () => {
   const gcd = calculateGcd(first, second);
   gcdResult.textContent = `NWD(${first}, ${second}) = ${gcd}`;
   gcdResult.className = "feedback-ok";
+});
+
+lcmBtn.addEventListener("click", () => {
+  const first = Number.parseInt(lcmA.value, 10);
+  const second = Number.parseInt(lcmB.value, 10);
+
+  if (!Number.isInteger(first) || !Number.isInteger(second)) {
+    lcmResult.textContent = "Podaj dwie poprawne liczby całkowite.";
+    lcmResult.className = "feedback-bad";
+    return;
+  }
+
+  const lcm = calculateLcm(first, second);
+  lcmResult.textContent = `NWW(${first}, ${second}) = ${lcm}`;
+  lcmResult.className = "feedback-ok";
+});
+
+factorialBtn.addEventListener("click", () => {
+  const value = Number.parseInt(factorialInput.value, 10);
+
+  if (!Number.isInteger(value) || value < 0 || value > 170) {
+    factorialResult.textContent = "Podaj poprawną liczbę całkowitą z zakresu 0-170.";
+    factorialResult.className = "feedback-bad";
+    return;
+  }
+
+  factorialResult.textContent = `${value}! = ${calculateFactorial(value)}`;
+  factorialResult.className = "feedback-ok";
+});
+
+statsBtn.addEventListener("click", () => {
+  const values = parseNumberList(statsInput.value);
+
+  if (values.length === 0 || values.some((value) => !Number.isFinite(value))) {
+    statsResult.textContent = "Wpisz co najmniej jedną poprawną liczbę oddzieloną przecinkami.";
+    statsResult.className = "feedback-bad";
+    return;
+  }
+
+  const sorted = [...values].sort((a, b) => a - b);
+  const average = values.reduce((sum, value) => sum + value, 0) / values.length;
+  const median = calculateMedian(sorted);
+
+  statsResult.textContent = `Średnia: ${average.toFixed(2)} | Mediana: ${median}`;
+  statsResult.className = "feedback-ok";
 });
 
 factBtn.addEventListener("click", pickRandomFact);
