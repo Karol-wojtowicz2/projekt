@@ -90,7 +90,12 @@ input,
 #quiz-score,
 #quiz-feedback,
 #fact-text,
-#fib-result {
+#fib-result,
+#prime-result,
+#gcd-result,
+#lcm-result,
+#factorial-result,
+#stats-result {
   display: block;
   margin-top: 0.75rem;
 }
