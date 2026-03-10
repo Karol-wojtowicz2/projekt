@@ -24,6 +24,23 @@
       </section>
 
       <section class="panel">
+        <h2>Ciekawostka na canvas: suma liczb nieparzystych tworzy kwadrat</h2>
+        <p>
+          Każda kolejna warstwa kwadratu ma nieparzystą liczbę pól. Dzięki temu
+          <strong>1 + 3 + 5 + ... + (2n - 1) = n²</strong>.
+        </p>
+        <canvas
+          id="odd-sum-canvas"
+          width="420"
+          height="420"
+          aria-label="Wizualizacja sumy liczb nieparzystych"
+        ></canvas>
+        <label for="odd-layer-range">Liczba warstw (n): <span id="odd-layer-value">5</span></label>
+        <input id="odd-layer-range" type="range" min="1" max="12" value="5" />
+        <p id="odd-sum-result" class="feedback-ok" aria-live="polite"></p>
+      </section>
+
+      <section class="panel">
         <h2>Mini quiz: Prawda czy fałsz?</h2>
         <div id="quiz-container"></div>
         <button id="next-question-btn">Następne pytanie</button>
