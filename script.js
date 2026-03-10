@@ -65,11 +65,6 @@ const factorialResult = document.getElementById("factorial-result");
 const statsInput = document.getElementById("stats-input");
 const statsBtn = document.getElementById("stats-btn");
 const statsResult = document.getElementById("stats-result");
-const oddSumCanvas = document.getElementById("odd-sum-canvas");
-const oddLayerRange = document.getElementById("odd-layer-range");
-const oddLayerValue = document.getElementById("odd-layer-value");
-const oddSumResult = document.getElementById("odd-sum-result");
-
 
 let questionIndex = 0;
 let answeredQuestions = 0;
@@ -213,65 +208,6 @@ function calculateMedian(sortedValues) {
   return sortedValues[middle];
 }
 
-function drawOddSumSquare(layers) {
-  if (!(oddSumCanvas instanceof HTMLCanvasElement)) {
-    return;
-  }
-
-  const context = oddSumCanvas.getContext("2d");
-  if (!context) {
-    return;
-  }
-
-  const canvasSize = oddSumCanvas.width;
-  const cellSize = Math.floor(canvasSize / layers);
-  const drawSize = cellSize * layers;
-  const offsetX = Math.floor((canvasSize - drawSize) / 2);
-  const offsetY = Math.floor((oddSumCanvas.height - drawSize) / 2);
-
-  context.clearRect(0, 0, oddSumCanvas.width, oddSumCanvas.height);
-  context.fillStyle = "#f8fbff";
-  context.fillRect(0, 0, oddSumCanvas.width, oddSumCanvas.height);
-
-  let painted = 0;
-  const palette = [
-    "#a6c8ff",
-    "#8bb4ff",
-    "#76a2ff",
-    "#5f90ff",
-    "#4b7bff",
-    "#3e63dd",
-    "#3353be",
-    "#28449f"
-  ];
-
-  for (let layer = 1; layer <= layers; layer += 1) {
-    const oddCount = 2 * layer - 1;
-    context.fillStyle = palette[(layer - 1) % palette.length];
-
-    for (let cell = 0; cell < oddCount; cell += 1) {
-      const row = Math.floor(painted / layers);
-      const column = painted % layers;
-      const x = offsetX + column * cellSize;
-      const y = offsetY + row * cellSize;
-
-      context.fillRect(x, y, cellSize, cellSize);
-      context.strokeStyle = "#ffffff";
-      context.strokeRect(x, y, cellSize, cellSize);
-
-      painted += 1;
-    }
-  }
-
-  context.strokeStyle = "#23335d";
-  context.lineWidth = 2;
-  context.strokeRect(offsetX, offsetY, drawSize, drawSize);
-
-  const lastOdd = 2 * layers - 1;
-  oddLayerValue.textContent = String(layers);
-  oddSumResult.textContent = `1 + 3 + 5 + ... + ${lastOdd} = ${layers ** 2}`;
-}
-
 fibBtn.addEventListener("click", () => {
   const amount = Number.parseInt(fibCount.value, 10);
 
@@ -376,15 +312,5 @@ statsBtn.addEventListener("click", () => {
 });
 
 factBtn.addEventListener("click", pickRandomFact);
-
-if (oddLayerRange instanceof HTMLInputElement) {
-  oddLayerRange.addEventListener("input", () => {
-    const layers = Number.parseInt(oddLayerRange.value, 10);
-    drawOddSumSquare(layers);
-  });
-
-  drawOddSumSquare(Number.parseInt(oddLayerRange.value, 10));
-}
-
 renderQuestion();
 updateScore();
