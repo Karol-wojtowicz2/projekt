@@ -270,6 +270,12 @@ lcmBtn.addEventListener("click", () => {
     return;
   }
 
+  if (first === 0 && second === 0) {
+    lcmResult.textContent = "Dla pary 0 i 0 NWW nie jest określony.";
+    lcmResult.className = "feedback-bad";
+    return;
+  }
+
   const lcm = calculateLcm(first, second);
   lcmResult.textContent = `NWW(${first}, ${second}) = ${lcm}`;
   lcmResult.className = "feedback-ok";
